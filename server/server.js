@@ -5,6 +5,8 @@ import dotenv from 'dotenv';
 // import routes
 import userRoute from './routes/userRoute.js';
 import socialMediaRoute from './routes/socialMediaRoute.js';
+import educationRoute from './routes/educationRoute.js';
+import experienceRoute from './routes/experienceRoute.js';
 
 dotenv.config();
 
@@ -31,3 +33,5 @@ startServer();
 
 app.use('/api/user', userRoute);
 app.use('/api/socialmedia', socialMediaRoute);
+app.use('/api/education', educationRoute);
+app.use('/api/experience', experienceRoute);
