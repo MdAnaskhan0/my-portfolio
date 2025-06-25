@@ -12,7 +12,7 @@ export const createSocialMedia = async (req, res) => {
         }
 
         const savedUserSocialLinks = await userSocialLinksData.save();
-        res.status(201).json({ message: 'User created successfully', savedUserSocialLinks });
+        res.status(201).json({ message: 'User social media created successfully', savedUserSocialLinks });
     } catch (error) {
         res.status(500).json({ message: 'Error creating user' });
     }
@@ -22,9 +22,9 @@ export const getSocialMedia = async (req, res) => {
     try {
         const userSocialLinks = await UserSocialLinks.findById(req.params.id);
         if (!userSocialLinks) {
-            return res.status(404).json({ message: 'User not found' });
+            return res.status(404).json({ message: 'social media not found' });
         }
-        res.status(200).json({ message: 'User found', userSocialLinks });
+        res.status(200).json({ message: 'social media found', userSocialLinks });
     } catch (error) {
         res.status(500).json({ message: 'Error getting user' });
     }
@@ -34,10 +34,10 @@ export const updateSocialMedia = async (req, res) => {
     try {
         const userSocialLinks = await UserSocialLinks.findById(req.params.id);
         if (!userSocialLinks) {
-            return res.status(404).json({ message: 'User not found' });
+            return res.status(404).json({ message: 'social media not found' });
         }
         const updatedUserSocialLinks = await UserSocialLinks.findByIdAndUpdate(req.params.id, req.body, { new: true });
-        res.status(200).json({ message: 'User updated successfully', updatedUserSocialLinks });
+        res.status(200).json({ message: 'social media updated successfully', updatedUserSocialLinks });
     } catch (error) {
         res.status(500).json({ message: 'Error updating user' });
     }
@@ -47,10 +47,10 @@ export const deleteSocialMedia = async (req, res) => {
     try {
         const userSocialLinks = await UserSocialLinks.findById(req.params.id);
         if (!userSocialLinks) {
-            return res.status(404).json({ message: 'User not found' });
+            return res.status(404).json({ message: 'social media not found' });
         }
         const deletedUserSocialLinks = await UserSocialLinks.findByIdAndDelete(req.params.id);
-        res.status(200).json({ message: 'User deleted successfully', deletedUserSocialLinks });
+        res.status(200).json({ message: 'social media deleted successfully', deletedUserSocialLinks });
     } catch (error) {
         res.status(500).json({ message: 'Error deleting user' });
     }
@@ -59,8 +59,8 @@ export const deleteSocialMedia = async (req, res) => {
 export const getAllSocialMedia = async (req, res) => {
     try {
         const userSocialLinks = await UserSocialLinks.find();
-        res.status(200).json({ message: 'All users found', userSocialLinks });
+        res.status(200).json({ message: 'All social media found', userSocialLinks });
     } catch (error) {
-        res.status(500).json({ message: 'Error getting all users' });
+        res.status(500).json({ message: 'Error getting all social media' });
     }
 };
