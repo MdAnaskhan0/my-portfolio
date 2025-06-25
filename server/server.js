@@ -18,12 +18,21 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+const cross = require('cros');
+
+const corsOptions = {
+  origin: ['http://localhost:5173', 'http://localhost:5174'], 
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+};
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cross(corsOptions));
 
+// Routes
 app.use('/projectImage', express.static(path.join(process.cwd(), 'server/projectImage')));
-
 app.use('/api/user', userRoute);
 app.use('/api/socialmedia', socialMediaRoute);
 app.use('/api/education', educationRoute);
