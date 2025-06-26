@@ -15,7 +15,7 @@ const Login = () => {
     e.preventDefault();
     const success = await login(credentials);
     if (success) {
-      navigate('/');
+      navigate('/admin');
     }
   };
 

@@ -8,15 +8,19 @@ import Dashboard from './pages/Dashboard';
 import AdminsPage from './pages/AdminsPage';
 import Profile from './pages/Profile';
 
+// Portfolio
+import Portfolio from './pages/portfolio/Portfolio';
+
 function App() {
   return (
     <AuthProvider>
       <Router>
         <Toaster position="top-right" />
         <Routes>
+          <Route path='/' element={<Portfolio />} />
           <Route path="/login" element={<Login />} />
           <Route
-            path="/"
+            path="/admin"
             element={
               <ProtectedRoute>
                 <Layout />
