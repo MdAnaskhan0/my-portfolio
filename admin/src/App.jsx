@@ -7,6 +7,8 @@ import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import AdminsPage from './pages/AdminsPage';
 import Profile from './pages/Profile';
+import CreateProfile from './components/settings/Profile/CreateProfile';
+import CreateSocial from './components/settings/social/CreateSocial';
 
 // Portfolio
 import Portfolio from './pages/portfolio/Portfolio';
@@ -29,6 +31,8 @@ function App() {
           >
             <Route index element={<Dashboard />} />
             <Route path="admins" element={<AdminsPage />} />
+            <Route path="profile" element={<Profile />} />
+            <Route path="profile/create" element={<CreateProfile />} />
             <Route path="profile" element={<Profile />} />
           </Route>
         </Routes>
