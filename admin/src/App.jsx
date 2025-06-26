@@ -33,7 +33,7 @@ function App() {
             <Route path="admins" element={<AdminsPage />} />
             <Route path="profile" element={<Profile />} />
             <Route path="profile/create" element={<CreateProfile />} />
-            <Route path="profile" element={<Profile />} />
+            <Route path="social/create" element={<CreateSocial />} />
           </Route>
         </Routes>
       </Router>
