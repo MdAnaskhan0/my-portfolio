@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import adminApi from '../api/adminApi';
 import { toast } from 'react-hot-toast';
-import jwtDecode from 'jwt-decode';
+import { jwtDecode } from 'jwt-decode';
 
 const AuthContext = createContext();
 
