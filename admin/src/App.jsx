@@ -7,7 +7,13 @@ import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import AdminsPage from './pages/AdminsPage';
 import Profile from './pages/Profile';
+
+// Portfolio Profile
 import CreateProfile from './components/settings/Profile/CreateProfile';
+import User from './components/settings/Profile/User';
+import UpdateProfile from './components/settings/Profile/UpdateProfile';
+
+
 import CreateSocial from './components/settings/social/CreateSocial';
 
 // Portfolio
@@ -33,7 +39,10 @@ function App() {
             <Route path="admins" element={<AdminsPage />} />
             <Route path="profile" element={<Profile />} />
             <Route path="profile/create" element={<CreateProfile />} />
+            <Route path="profile/view" element={<User />} />
+            <Route path="profile/:id" element={<UpdateProfile />} />
             <Route path="social/create" element={<CreateSocial />} />
+
           </Route>
         </Routes>
       </Router>

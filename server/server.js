@@ -32,6 +32,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors(corsOptions));
 
 // API Routes
+app.use('/profilePicture', express.static(path.join(process.cwd(), 'profilePicture')));
 app.use('/projectImage', express.static(path.join(process.cwd(), 'server/projectImage')));
 app.use('/api/user', userRoute);
 app.use('/api/socialmedia', socialMediaRoute);

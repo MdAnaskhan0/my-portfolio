@@ -15,12 +15,12 @@ const Dashboard = () => {
           <h2 className="text-lg font-semibold mb-2">Quick Actions</h2>
           <ul className="space-y-2">
             <li>
-              <a href="/admins" className="text-primary hover:underline">
+              <a href="admin/admins" className="text-primary hover:underline">
                 Manage Admins
               </a>
             </li>
             <li>
-              <a href="/profile" className="text-primary hover:underline">
+              <a href="admin/profile" className="text-primary hover:underline">
                 Update Profile
               </a>
             </li>

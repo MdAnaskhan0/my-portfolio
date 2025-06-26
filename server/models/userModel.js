@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+
 const userSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -15,15 +16,19 @@ const userSchema = new mongoose.Schema({
     },
     designation: {
         type: String,
-        required: true
+        required: true,
     },
     dob: {
         type: Date,
-        required: true
+        required: true,
     },
     address: {
         type: String,
-        required: true
+        required: true,
+    },
+    profilepicture: {  // lowercase here
+        type: String,
+        default: '',
     },
 });
 

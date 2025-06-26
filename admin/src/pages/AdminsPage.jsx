@@ -64,7 +64,7 @@ const AdminsPage = () => {
             setEditingAdmin(null);
             setIsFormOpen(true);
           }}
-          className="bg-primary text-white px-4 py-2 rounded hover:bg-primary-dark"
+          className="bg-primary text-gray-700 px-4 py-2 rounded hover:bg-primary-dark"
         >
           Add Admin
         </button>
