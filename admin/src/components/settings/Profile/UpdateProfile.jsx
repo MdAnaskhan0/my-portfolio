@@ -101,7 +101,7 @@ const UpdateProfile = () => {
             try {
                 await axios.delete(`${base_url}/api/user/${id}`);
                 toast.success("User deleted successfully");
-                navigate('/admin/users');
+                navigate('/admin');
             } catch (err) {
                 console.error(err);
                 toast.error("Failed to delete user");

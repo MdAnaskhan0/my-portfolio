@@ -15,6 +15,8 @@ import UpdateProfile from './components/settings/Profile/UpdateProfile';
 
 
 import CreateSocial from './components/settings/social/CreateSocial';
+import SocialLinks from './components/settings/social/SocialLinks';
+import UpadateLink from './components/settings/social/Link';
 
 // Portfolio
 import Portfolio from './pages/portfolio/Portfolio';
@@ -38,11 +40,14 @@ function App() {
             <Route index element={<Dashboard />} />
             <Route path="admins" element={<AdminsPage />} />
             <Route path="profile" element={<Profile />} />
+
             <Route path="profile/create" element={<CreateProfile />} />
             <Route path="profile/view" element={<User />} />
             <Route path="profile/:id" element={<UpdateProfile />} />
-            <Route path="social/create" element={<CreateSocial />} />
 
+            <Route path="social/create" element={<CreateSocial />} />
+            <Route path="social" element={<SocialLinks />} />
+            <Route path="social/:id" element={<UpadateLink />} />
           </Route>
         </Routes>
       </Router>
