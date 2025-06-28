@@ -13,10 +13,15 @@ import CreateProfile from './components/settings/Profile/CreateProfile';
 import User from './components/settings/Profile/User';
 import UpdateProfile from './components/settings/Profile/UpdateProfile';
 
-
+// Social Links
 import CreateSocial from './components/settings/social/CreateSocial';
 import SocialLinks from './components/settings/social/SocialLinks';
 import UpadateLink from './components/settings/social/Link';
+
+// Education
+import CreateEducation from './components/settings/education/CreateEducation';
+import Educations from './components/settings/education/Educations';
+import UpdateEducation from './components/settings/education/UpdateEducation';
 
 // Portfolio
 import Portfolio from './pages/portfolio/Portfolio';
@@ -48,6 +53,11 @@ function App() {
             <Route path="social/create" element={<CreateSocial />} />
             <Route path="social" element={<SocialLinks />} />
             <Route path="social/:id" element={<UpadateLink />} />
+
+            <Route path="education/create" element={<CreateEducation />} />
+            <Route path="education" element={<Educations />} />
+            <Route path="education/:id" element={<UpdateEducation />} />
+
           </Route>
         </Routes>
       </Router>

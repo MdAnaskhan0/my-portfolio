@@ -13,17 +13,35 @@ import {
   FiFolder,
   FiChevronDown,
   FiChevronRight,
-  FiSettings
+  FiSettings,
+  FiLink2,
+  FiBookmark,
+  FiActivity,
+  FiTool
 } from 'react-icons/fi';
 
 const Sidebar = () => {
   const { pathname } = useLocation();
   const isActive = (path) => pathname === path;
 
-  const [openMenu, setOpenMenu] = useState('');
+  const [openMenus, setOpenMenus] = useState({
+    portfolio: false,
+    profile: false,
+    social: false,
+    education: false,
+    experience: false,
+    expertise: false,
+    skills: false,
+    publications: false,
+    projectCategories: false,
+    projects: false
+  });
 
   const toggleMenu = (menu) => {
-    setOpenMenu((prev) => (prev === menu ? '' : menu));
+    setOpenMenus(prev => ({
+      ...prev,
+      [menu]: !prev[menu]
+    }));
   };
 
   return (
@@ -77,7 +95,7 @@ const Sidebar = () => {
           <button
             onClick={() => toggleMenu('portfolio')}
             className={`w-full flex items-center justify-between p-3 rounded-lg transition-all ${
-              openMenu === 'portfolio' 
+              openMenus.portfolio 
                 ? 'bg-primary bg-opacity-10 text-primary font-medium' 
                 : 'text-gray-600 hover:bg-gray-200 hover:bg-opacity-50'
             }`}
@@ -86,252 +104,396 @@ const Sidebar = () => {
               <FiBriefcase className="mr-3" />
               <span>Portfolio Settings</span>
             </div>
-            {openMenu === 'portfolio' ? <FiChevronDown /> : <FiChevronRight />}
+            {openMenus.portfolio ? <FiChevronDown /> : <FiChevronRight />}
           </button>
 
-          {openMenu === 'portfolio' && (
-            <div className="ml-8 mt-1 space-y-1">
-              {/* User Profile */}
-              <div className="pt-2">
-                <p className="text-xs uppercase font-semibold text-gray-500 px-3 mb-1">Portfolio Profile</p>
-                <div className="space-y-1">
-                  <Link 
-                    to="/admin/profile/create" 
-                    className={`block p-2 rounded-lg text-sm ${
-                      isActive('/admin/profile/create') 
-                        ? 'bg-primary bg-opacity-10 text-primary' 
-                        : 'text-gray-600 hover:bg-gray-200 hover:bg-opacity-50'
-                    }`}
-                  >
-                    Create Profile
-                  </Link>
-                  <Link 
-                    to="/admin/profile/view" 
-                    className={`block p-2 rounded-lg text-sm ${
-                      isActive('/admin/profile/view') 
-                        ? 'bg-primary bg-opacity-10 text-primary' 
-                        : 'text-gray-600 hover:bg-gray-200 hover:bg-opacity-50'
-                    }`}
-                  >
-                    Profile View
-                  </Link>
-                </div>
+          {openMenus.portfolio && (
+            <div className="ml-6 mt-1 space-y-1 border-l-2 border-gray-200 pl-2">
+              {/* Portfolio Profile */}
+              <div>
+                <button
+                  onClick={() => toggleMenu('profile')}
+                  className={`w-full flex items-center justify-between p-2 rounded-lg transition-all text-sm ${
+                    openMenus.profile 
+                      ? 'bg-primary bg-opacity-10 text-primary font-medium' 
+                      : 'text-gray-600 hover:bg-gray-200 hover:bg-opacity-50'
+                  }`}
+                >
+                  <div className="flex items-center">
+                    <FiUser className="mr-2 text-xs" />
+                    <span>Portfolio Profile</span>
+                  </div>
+                  {openMenus.profile ? <FiChevronDown size={14} /> : <FiChevronRight size={14} />}
+                </button>
+                
+                {openMenus.profile && (
+                  <div className="ml-4 mt-1 space-y-1 border-l-2 border-gray-200 pl-2">
+                    <Link 
+                      to="/admin/profile/create" 
+                      className={`block p-2 rounded-lg text-xs ${
+                        isActive('/admin/profile/create') 
+                          ? 'bg-primary bg-opacity-10 text-primary' 
+                          : 'text-gray-600 hover:bg-gray-200 hover:bg-opacity-50'
+                      }`}
+                    >
+                      Create Profile
+                    </Link>
+                    <Link 
+                      to="/admin/profile/view" 
+                      className={`block p-2 rounded-lg text-xs ${
+                        isActive('/admin/profile/view') 
+                          ? 'bg-primary bg-opacity-10 text-primary' 
+                          : 'text-gray-600 hover:bg-gray-200 hover:bg-opacity-50'
+                      }`}
+                    >
+                      Profile View
+                    </Link>
+                  </div>
+                )}
               </div>
 
-              {/* Social Link */}
-              <div className="pt-2">
-                <p className="text-xs uppercase font-semibold text-gray-500 px-3 mb-1">Social Links</p>
-                <div className="space-y-1">
-                  <Link 
-                    to="/admin/social/create" 
-                    className={`block p-2 rounded-lg text-sm ${
-                      isActive('/admin/social/create') 
-                        ? 'bg-primary bg-opacity-10 text-primary' 
-                        : 'text-gray-600 hover:bg-gray-200 hover:bg-opacity-50'
-                    }`}
-                  >
-                    Create Link
-                  </Link>
-                  <Link 
-                    to="/admin/social" 
-                    className={`block p-2 rounded-lg text-sm ${
-                      isActive('/admin/social') 
-                        ? 'bg-primary bg-opacity-10 text-primary' 
-                        : 'text-gray-600 hover:bg-gray-200 hover:bg-opacity-50'
-                    }`}
-                  >
-                    All Links
-                  </Link>
-                </div>
+              {/* Social Links */}
+              <div>
+                <button
+                  onClick={() => toggleMenu('social')}
+                  className={`w-full flex items-center justify-between p-2 rounded-lg transition-all text-sm ${
+                    openMenus.social 
+                      ? 'bg-primary bg-opacity-10 text-primary font-medium' 
+                      : 'text-gray-600 hover:bg-gray-200 hover:bg-opacity-50'
+                  }`}
+                >
+                  <div className="flex items-center">
+                    <FiLink2 className="mr-2 text-xs" />
+                    <span>Social Links</span>
+                  </div>
+                  {openMenus.social ? <FiChevronDown size={14} /> : <FiChevronRight size={14} />}
+                </button>
+                
+                {openMenus.social && (
+                  <div className="ml-4 mt-1 space-y-1 border-l-2 border-gray-200 pl-2">
+                    <Link 
+                      to="/admin/social/create" 
+                      className={`block p-2 rounded-lg text-xs ${
+                        isActive('/admin/social/create') 
+                          ? 'bg-primary bg-opacity-10 text-primary' 
+                          : 'text-gray-600 hover:bg-gray-200 hover:bg-opacity-50'
+                      }`}
+                    >
+                      Create Link
+                    </Link>
+                    <Link 
+                      to="/admin/social" 
+                      className={`block p-2 rounded-lg text-xs ${
+                        isActive('/admin/social') 
+                          ? 'bg-primary bg-opacity-10 text-primary' 
+                          : 'text-gray-600 hover:bg-gray-200 hover:bg-opacity-50'
+                      }`}
+                    >
+                      All Links
+                    </Link>
+                  </div>
+                )}
               </div>
 
               {/* Education */}
-              <div className="pt-2">
-                <p className="text-xs uppercase font-semibold text-gray-500 px-3 mb-1">Education</p>
-                <div className="space-y-1">
-                  <Link 
-                    to="/admin/education/create" 
-                    className={`block p-2 rounded-lg text-sm ${
-                      isActive('/admin/education/create') 
-                        ? 'bg-primary bg-opacity-10 text-primary' 
-                        : 'text-gray-600 hover:bg-gray-200 hover:bg-opacity-50'
-                    }`}
-                  >
-                    Create Education
-                  </Link>
-                  <Link 
-                    to="/admin/education" 
-                    className={`block p-2 rounded-lg text-sm ${
-                      isActive('/admin/education') 
-                        ? 'bg-primary bg-opacity-10 text-primary' 
-                        : 'text-gray-600 hover:bg-gray-200 hover:bg-opacity-50'
-                    }`}
-                  >
-                    Educations
-                  </Link>
-                </div>
+              <div>
+                <button
+                  onClick={() => toggleMenu('education')}
+                  className={`w-full flex items-center justify-between p-2 rounded-lg transition-all text-sm ${
+                    openMenus.education 
+                      ? 'bg-primary bg-opacity-10 text-primary font-medium' 
+                      : 'text-gray-600 hover:bg-gray-200 hover:bg-opacity-50'
+                  }`}
+                >
+                  <div className="flex items-center">
+                    <FiBook className="mr-2 text-xs" />
+                    <span>Education</span>
+                  </div>
+                  {openMenus.education ? <FiChevronDown size={14} /> : <FiChevronRight size={14} />}
+                </button>
+                
+                {openMenus.education && (
+                  <div className="ml-4 mt-1 space-y-1 border-l-2 border-gray-200 pl-2">
+                    <Link 
+                      to="/admin/education/create" 
+                      className={`block p-2 rounded-lg text-xs ${
+                        isActive('/admin/education/create') 
+                          ? 'bg-primary bg-opacity-10 text-primary' 
+                          : 'text-gray-600 hover:bg-gray-200 hover:bg-opacity-50'
+                      }`}
+                    >
+                      Create Education
+                    </Link>
+                    <Link 
+                      to="/admin/education" 
+                      className={`block p-2 rounded-lg text-xs ${
+                        isActive('/admin/education') 
+                          ? 'bg-primary bg-opacity-10 text-primary' 
+                          : 'text-gray-600 hover:bg-gray-200 hover:bg-opacity-50'
+                      }`}
+                    >
+                      Educations
+                    </Link>
+                  </div>
+                )}
               </div>
 
               {/* Experience */}
-              <div className="pt-2">
-                <p className="text-xs uppercase font-semibold text-gray-500 px-3 mb-1">Experience</p>
-                <div className="space-y-1">
-                  <Link 
-                    to="/admin/experience/create" 
-                    className={`block p-2 rounded-lg text-sm ${
-                      isActive('/admin/experience/create') 
-                        ? 'bg-primary bg-opacity-10 text-primary' 
-                        : 'text-gray-600 hover:bg-gray-200 hover:bg-opacity-50'
-                    }`}
-                  >
-                    Create Experience
-                  </Link>
-                  <Link 
-                    to="/admin/experience" 
-                    className={`block p-2 rounded-lg text-sm ${
-                      isActive('/admin/experience') 
-                        ? 'bg-primary bg-opacity-10 text-primary' 
-                        : 'text-gray-600 hover:bg-gray-200 hover:bg-opacity-50'
-                    }`}
-                  >
-                    Experiences
-                  </Link>
-                </div>
+              <div>
+                <button
+                  onClick={() => toggleMenu('experience')}
+                  className={`w-full flex items-center justify-between p-2 rounded-lg transition-all text-sm ${
+                    openMenus.experience 
+                      ? 'bg-primary bg-opacity-10 text-primary font-medium' 
+                      : 'text-gray-600 hover:bg-gray-200 hover:bg-opacity-50'
+                  }`}
+                >
+                  <div className="flex items-center">
+                    <FiActivity className="mr-2 text-xs" />
+                    <span>Experience</span>
+                  </div>
+                  {openMenus.experience ? <FiChevronDown size={14} /> : <FiChevronRight size={14} />}
+                </button>
+                
+                {openMenus.experience && (
+                  <div className="ml-4 mt-1 space-y-1 border-l-2 border-gray-200 pl-2">
+                    <Link 
+                      to="/admin/experience/create" 
+                      className={`block p-2 rounded-lg text-xs ${
+                        isActive('/admin/experience/create') 
+                          ? 'bg-primary bg-opacity-10 text-primary' 
+                          : 'text-gray-600 hover:bg-gray-200 hover:bg-opacity-50'
+                      }`}
+                    >
+                      Create Experience
+                    </Link>
+                    <Link 
+                      to="/admin/experience" 
+                      className={`block p-2 rounded-lg text-xs ${
+                        isActive('/admin/experience') 
+                          ? 'bg-primary bg-opacity-10 text-primary' 
+                          : 'text-gray-600 hover:bg-gray-200 hover:bg-opacity-50'
+                      }`}
+                    >
+                      Experiences
+                    </Link>
+                  </div>
+                )}
               </div>
 
-              {/* Exparties */}
-              <div className="pt-2">
-                <p className="text-xs uppercase font-semibold text-gray-500 px-3 mb-1">Expertise</p>
-                <div className="space-y-1">
-                  <Link 
-                    to="/admin/exparties/create" 
-                    className={`block p-2 rounded-lg text-sm ${
-                      isActive('/admin/exparties/create') 
-                        ? 'bg-primary bg-opacity-10 text-primary' 
-                        : 'text-gray-600 hover:bg-gray-200 hover:bg-opacity-50'
-                    }`}
-                  >
-                    Create Expertise
-                  </Link>
-                  <Link 
-                    to="/admin/exparties" 
-                    className={`block p-2 rounded-lg text-sm ${
-                      isActive('/admin/exparties') 
-                        ? 'bg-primary bg-opacity-10 text-primary' 
-                        : 'text-gray-600 hover:bg-gray-200 hover:bg-opacity-50'
-                    }`}
-                  >
-                    Expertise List
-                  </Link>
-                </div>
+              {/* Expertise */}
+              <div>
+                <button
+                  onClick={() => toggleMenu('expertise')}
+                  className={`w-full flex items-center justify-between p-2 rounded-lg transition-all text-sm ${
+                    openMenus.expertise 
+                      ? 'bg-primary bg-opacity-10 text-primary font-medium' 
+                      : 'text-gray-600 hover:bg-gray-200 hover:bg-opacity-50'
+                  }`}
+                >
+                  <div className="flex items-center">
+                    <FiTool className="mr-2 text-xs" />
+                    <span>Expertise</span>
+                  </div>
+                  {openMenus.expertise ? <FiChevronDown size={14} /> : <FiChevronRight size={14} />}
+                </button>
+                
+                {openMenus.expertise && (
+                  <div className="ml-4 mt-1 space-y-1 border-l-2 border-gray-200 pl-2">
+                    <Link 
+                      to="/admin/exparties/create" 
+                      className={`block p-2 rounded-lg text-xs ${
+                        isActive('/admin/exparties/create') 
+                          ? 'bg-primary bg-opacity-10 text-primary' 
+                          : 'text-gray-600 hover:bg-gray-200 hover:bg-opacity-50'
+                      }`}
+                    >
+                      Create Expertise
+                    </Link>
+                    <Link 
+                      to="/admin/exparties" 
+                      className={`block p-2 rounded-lg text-xs ${
+                        isActive('/admin/exparties') 
+                          ? 'bg-primary bg-opacity-10 text-primary' 
+                          : 'text-gray-600 hover:bg-gray-200 hover:bg-opacity-50'
+                      }`}
+                    >
+                      Expertise List
+                    </Link>
+                  </div>
+                )}
               </div>
 
-              {/* Skill */}
-              <div className="pt-2">
-                <p className="text-xs uppercase font-semibold text-gray-500 px-3 mb-1">Skills</p>
-                <div className="space-y-1">
-                  <Link 
-                    to="/admin/skill/create" 
-                    className={`block p-2 rounded-lg text-sm ${
-                      isActive('/admin/skill/create') 
-                        ? 'bg-primary bg-opacity-10 text-primary' 
-                        : 'text-gray-600 hover:bg-gray-200 hover:bg-opacity-50'
-                    }`}
-                  >
-                    Create Skill
-                  </Link>
-                  <Link 
-                    to="/admin/skill" 
-                    className={`block p-2 rounded-lg text-sm ${
-                      isActive('/admin/skill') 
-                        ? 'bg-primary bg-opacity-10 text-primary' 
-                        : 'text-gray-600 hover:bg-gray-200 hover:bg-opacity-50'
-                    }`}
-                  >
-                    Skills List
-                  </Link>
-                </div>
+              {/* Skills */}
+              <div>
+                <button
+                  onClick={() => toggleMenu('skills')}
+                  className={`w-full flex items-center justify-between p-2 rounded-lg transition-all text-sm ${
+                    openMenus.skills 
+                      ? 'bg-primary bg-opacity-10 text-primary font-medium' 
+                      : 'text-gray-600 hover:bg-gray-200 hover:bg-opacity-50'
+                  }`}
+                >
+                  <div className="flex items-center">
+                    <FiCode className="mr-2 text-xs" />
+                    <span>Skills</span>
+                  </div>
+                  {openMenus.skills ? <FiChevronDown size={14} /> : <FiChevronRight size={14} />}
+                </button>
+                
+                {openMenus.skills && (
+                  <div className="ml-4 mt-1 space-y-1 border-l-2 border-gray-200 pl-2">
+                    <Link 
+                      to="/admin/skill/create" 
+                      className={`block p-2 rounded-lg text-xs ${
+                        isActive('/admin/skill/create') 
+                          ? 'bg-primary bg-opacity-10 text-primary' 
+                          : 'text-gray-600 hover:bg-gray-200 hover:bg-opacity-50'
+                      }`}
+                    >
+                      Create Skill
+                    </Link>
+                    <Link 
+                      to="/admin/skill" 
+                      className={`block p-2 rounded-lg text-xs ${
+                        isActive('/admin/skill') 
+                          ? 'bg-primary bg-opacity-10 text-primary' 
+                          : 'text-gray-600 hover:bg-gray-200 hover:bg-opacity-50'
+                      }`}
+                    >
+                      Skills List
+                    </Link>
+                  </div>
+                )}
               </div>
 
-              {/* Publication */}
-              <div className="pt-2">
-                <p className="text-xs uppercase font-semibold text-gray-500 px-3 mb-1">Publications</p>
-                <div className="space-y-1">
-                  <Link 
-                    to="/admin/publication/create" 
-                    className={`block p-2 rounded-lg text-sm ${
-                      isActive('/admin/publication/create') 
-                        ? 'bg-primary bg-opacity-10 text-primary' 
-                        : 'text-gray-600 hover:bg-gray-200 hover:bg-opacity-50'
-                    }`}
-                  >
-                    Create Publication
-                  </Link>
-                  <Link 
-                    to="/admin/publication" 
-                    className={`block p-2 rounded-lg text-sm ${
-                      isActive('/admin/publication') 
-                        ? 'bg-primary bg-opacity-10 text-primary' 
-                        : 'text-gray-600 hover:bg-gray-200 hover:bg-opacity-50'
-                    }`}
-                  >
-                    Publications
-                  </Link>
-                </div>
+              {/* Publications */}
+              <div>
+                <button
+                  onClick={() => toggleMenu('publications')}
+                  className={`w-full flex items-center justify-between p-2 rounded-lg transition-all text-sm ${
+                    openMenus.publications 
+                      ? 'bg-primary bg-opacity-10 text-primary font-medium' 
+                      : 'text-gray-600 hover:bg-gray-200 hover:bg-opacity-50'
+                  }`}
+                >
+                  <div className="flex items-center">
+                    <FiBookmark className="mr-2 text-xs" />
+                    <span>Publications</span>
+                  </div>
+                  {openMenus.publications ? <FiChevronDown size={14} /> : <FiChevronRight size={14} />}
+                </button>
+                
+                {openMenus.publications && (
+                  <div className="ml-4 mt-1 space-y-1 border-l-2 border-gray-200 pl-2">
+                    <Link 
+                      to="/admin/publication/create" 
+                      className={`block p-2 rounded-lg text-xs ${
+                        isActive('/admin/publication/create') 
+                          ? 'bg-primary bg-opacity-10 text-primary' 
+                          : 'text-gray-600 hover:bg-gray-200 hover:bg-opacity-50'
+                      }`}
+                    >
+                      Create Publication
+                    </Link>
+                    <Link 
+                      to="/admin/publication" 
+                      className={`block p-2 rounded-lg text-xs ${
+                        isActive('/admin/publication') 
+                          ? 'bg-primary bg-opacity-10 text-primary' 
+                          : 'text-gray-600 hover:bg-gray-200 hover:bg-opacity-50'
+                      }`}
+                    >
+                      Publications
+                    </Link>
+                  </div>
+                )}
               </div>
 
-              {/* Project Category */}
-              <div className="pt-2">
-                <p className="text-xs uppercase font-semibold text-gray-500 px-3 mb-1">Project Categories</p>
-                <div className="space-y-1">
-                  <Link 
-                    to="/admin/project-category/create" 
-                    className={`block p-2 rounded-lg text-sm ${
-                      isActive('/admin/project-category/create') 
-                        ? 'bg-primary bg-opacity-10 text-primary' 
-                        : 'text-gray-600 hover:bg-gray-200 hover:bg-opacity-50'
-                    }`}
-                  >
-                    Create Category
-                  </Link>
-                  <Link 
-                    to="/admin/project-category" 
-                    className={`block p-2 rounded-lg text-sm ${
-                      isActive('/admin/project-category') 
-                        ? 'bg-primary bg-opacity-10 text-primary' 
-                        : 'text-gray-600 hover:bg-gray-200 hover:bg-opacity-50'
-                    }`}
-                  >
-                    Categories
-                  </Link>
-                </div>
+              {/* Project Categories */}
+              <div>
+                <button
+                  onClick={() => toggleMenu('projectCategories')}
+                  className={`w-full flex items-center justify-between p-2 rounded-lg transition-all text-sm ${
+                    openMenus.projectCategories 
+                      ? 'bg-primary bg-opacity-10 text-primary font-medium' 
+                      : 'text-gray-600 hover:bg-gray-200 hover:bg-opacity-50'
+                  }`}
+                >
+                  <div className="flex items-center">
+                    <FiLayers className="mr-2 text-xs" />
+                    <span>Project Categories</span>
+                  </div>
+                  {openMenus.projectCategories ? <FiChevronDown size={14} /> : <FiChevronRight size={14} />}
+                </button>
+                
+                {openMenus.projectCategories && (
+                  <div className="ml-4 mt-1 space-y-1 border-l-2 border-gray-200 pl-2">
+                    <Link 
+                      to="/admin/project-category/create" 
+                      className={`block p-2 rounded-lg text-xs ${
+                        isActive('/admin/project-category/create') 
+                          ? 'bg-primary bg-opacity-10 text-primary' 
+                          : 'text-gray-600 hover:bg-gray-200 hover:bg-opacity-50'
+                      }`}
+                    >
+                      Create Category
+                    </Link>
+                    <Link 
+                      to="/admin/project-category" 
+                      className={`block p-2 rounded-lg text-xs ${
+                        isActive('/admin/project-category') 
+                          ? 'bg-primary bg-opacity-10 text-primary' 
+                          : 'text-gray-600 hover:bg-gray-200 hover:bg-opacity-50'
+                      }`}
+                    >
+                      Categories
+                    </Link>
+                  </div>
+                )}
               </div>
 
-              {/* Project */}
-              <div className="pt-2">
-                <p className="text-xs uppercase font-semibold text-gray-500 px-3 mb-1">Projects</p>
-                <div className="space-y-1">
-                  <Link 
-                    to="/admin/project/create" 
-                    className={`block p-2 rounded-lg text-sm ${
-                      isActive('/admin/project/create') 
-                        ? 'bg-primary bg-opacity-10 text-primary' 
-                        : 'text-gray-600 hover:bg-gray-200 hover:bg-opacity-50'
-                    }`}
-                  >
-                    Create Project
-                  </Link>
-                  <Link 
-                    to="/admin/project" 
-                    className={`block p-2 rounded-lg text-sm ${
-                      isActive('/admin/project') 
-                        ? 'bg-primary bg-opacity-10 text-primary' 
-                        : 'text-gray-600 hover:bg-gray-200 hover:bg-opacity-50'
-                    }`}
-                  >
-                    Projects
-                  </Link>
-                </div>
+              {/* Projects */}
+              <div>
+                <button
+                  onClick={() => toggleMenu('projects')}
+                  className={`w-full flex items-center justify-between p-2 rounded-lg transition-all text-sm ${
+                    openMenus.projects 
+                      ? 'bg-primary bg-opacity-10 text-primary font-medium' 
+                      : 'text-gray-600 hover:bg-gray-200 hover:bg-opacity-50'
+                  }`}
+                >
+                  <div className="flex items-center">
+                    <FiFolder className="mr-2 text-xs" />
+                    <span>Projects</span>
+                  </div>
+                  {openMenus.projects ? <FiChevronDown size={14} /> : <FiChevronRight size={14} />}
+                </button>
+                
+                {openMenus.projects && (
+                  <div className="ml-4 mt-1 space-y-1 border-l-2 border-gray-200 pl-2">
+                    <Link 
+                      to="/admin/project/create" 
+                      className={`block p-2 rounded-lg text-xs ${
+                        isActive('/admin/project/create') 
+                          ? 'bg-primary bg-opacity-10 text-primary' 
+                          : 'text-gray-600 hover:bg-gray-200 hover:bg-opacity-50'
+                      }`}
+                    >
+                      Create Project
+                    </Link>
+                    <Link 
+                      to="/admin/project" 
+                      className={`block p-2 rounded-lg text-xs ${
+                        isActive('/admin/project') 
+                          ? 'bg-primary bg-opacity-10 text-primary' 
+                          : 'text-gray-600 hover:bg-gray-200 hover:bg-opacity-50'
+                      }`}
+                    >
+                      Projects
+                    </Link>
+                  </div>
+                )}
               </div>
             </div>
           )}
