@@ -23,6 +23,11 @@ import CreateEducation from './components/settings/education/CreateEducation';
 import Educations from './components/settings/education/Educations';
 import UpdateEducation from './components/settings/education/UpdateEducation';
 
+// Experience
+import CreateExperience from './components/settings/experience/CreateExperience';
+import Experiences from './components/settings/experience/Experiences';
+import UpdateExperience from './components/settings/experience/UpdateExperience';
+
 // Portfolio
 import Portfolio from './pages/portfolio/Portfolio';
 
@@ -57,6 +62,10 @@ function App() {
             <Route path="education/create" element={<CreateEducation />} />
             <Route path="education" element={<Educations />} />
             <Route path="education/:id" element={<UpdateEducation />} />
+
+            <Route path="experience/create" element={<CreateExperience />} />
+            <Route path="experience" element={<Experiences />} />
+            <Route path="experience/:id" element={<UpdateExperience />} />
 
           </Route>
         </Routes>
