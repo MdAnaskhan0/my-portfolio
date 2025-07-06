@@ -1,4 +1,4 @@
-import PublicationModel from '../models/publicationModel.js';
+import Publication from '../models/publicationModel.js';
 
 export const createPublication = async (req, res) => {
     try {

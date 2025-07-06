@@ -38,6 +38,11 @@ import CreateSkill from './components/settings/skill/CreateSkill';
 import Skills from './components/settings/skill/Skills';
 import UpdateSkill from './components/settings/skill/UpdateSkill';
 
+// Publications
+import CreatePublication from './components/settings/publications/CreatePublication';
+import Publications from './components/settings/publications/Publications'; 
+import UpdatePublication from './components/settings/publications/UpdatePublication';
+
 // Portfolio
 import Portfolio from './pages/portfolio/Portfolio';
 
@@ -84,6 +89,10 @@ function App() {
             <Route path="skill/create" element={<CreateSkill />} />
             <Route path="skill" element={<Skills />} /> 
             <Route path="skill/:id" element={<UpdateSkill />} />
+
+            <Route path="publication/create" element={<CreatePublication />} />
+            <Route path="publication" element={<Publications />} /> 
+            <Route path="publication/:id" element={<UpdatePublication />} />
 
           </Route>
         </Routes>
