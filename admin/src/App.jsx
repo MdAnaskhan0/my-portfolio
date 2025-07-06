@@ -28,6 +28,16 @@ import CreateExperience from './components/settings/experience/CreateExperience'
 import Experiences from './components/settings/experience/Experiences';
 import UpdateExperience from './components/settings/experience/UpdateExperience';
 
+// Exparties
+import CreateExparties from './components/settings/experties/CreateExparties';
+import Exparties from './components/settings/experties/Exparties';
+import UpdateExparties from './components/settings/experties/UpdateExparties';
+
+// Skills
+import CreateSkill from './components/settings/skill/CreateSkill';
+import Skills from './components/settings/skill/Skills';
+import UpdateSkill from './components/settings/skill/UpdateSkill';
+
 // Portfolio
 import Portfolio from './pages/portfolio/Portfolio';
 
@@ -66,6 +76,14 @@ function App() {
             <Route path="experience/create" element={<CreateExperience />} />
             <Route path="experience" element={<Experiences />} />
             <Route path="experience/:id" element={<UpdateExperience />} />
+
+            <Route path="exparties/create" element={<CreateExparties />} />
+            <Route path="exparties" element={<Exparties />} />
+            <Route path="exparties/:id" element={<UpdateExparties />} />
+
+            <Route path="skill/create" element={<CreateSkill />} />
+            <Route path="skill" element={<Skills />} /> 
+            <Route path="skill/:id" element={<UpdateSkill />} />
 
           </Route>
         </Routes>
