@@ -44,7 +44,7 @@ const CreatePublication = () => {
                     draggable: true,
                 });
                 setTimeout(() => {
-                    navigate('/publications');
+                    navigate('/admin/publication');
                 }, 1500);
             }
         } catch (err) {

@@ -2,8 +2,8 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { FaPlus, FaEdit, FaTrash, FaExternalLinkAlt, FaCalendarAlt, FaUser, FaBook, FaNewspaper } from 'react-icons/fa';
-import { ToastContainer, toast } from 'react-toastify';
+import { FiEdit2, FiTrash2, FiPlus, FiExternalLink } from 'react-icons/fi';
+import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Publications = () => {
@@ -20,141 +20,117 @@ const Publications = () => {
                 setLoading(false);
             } catch (err) {
                 setError('Failed to fetch publications');
+                toast.error('Failed to fetch publications');
                 setLoading(false);
-                toast.error('Failed to fetch publications', {
-                    position: "top-right",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                });
             }
         };
         fetchPublications();
     }, [baseurl]);
 
     const handleDelete = async (id) => {
-        if (window.confirm('Are you sure you want to delete this publication?')) {
-            try {
-                await axios.delete(`${baseurl}/api/publication/${id}`);
-                setPublications(publications.filter(pub => pub._id !== id));
-                toast.success('Publication deleted successfully!', {
-                    position: "top-right",
-                    autoClose: 3000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                });
-            } catch (err) {
-                setError('Failed to delete publication');
-                toast.error('Failed to delete publication', {
-                    position: "top-right",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                });
-            }
+        try {
+            await axios.delete(`${baseurl}/api/publication/${id}`);
+            setPublications(publications.filter(pub => pub._id !== id));
+            toast.success('Publication deleted successfully');
+        } catch (err) {
+            setError('Failed to delete publication');
+            toast.error('Failed to delete publication');
         }
     };
 
     if (loading) return (
-        <div className="container mx-auto p-8 text-center text-gray-600">
-            <div className="inline-block animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-500 mr-2"></div>
-            Loading publications...
+        <div className="flex justify-center items-center h-64">
+            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
         </div>
     );
 
     if (error) return (
-        <div className="container mx-auto p-8 text-center text-red-500">
-            {error}
+        <div className="container mx-auto p-4">
+            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                <strong className="font-bold">Error!</strong>
+                <span className="block sm:inline"> {error}</span>
+            </div>
         </div>
     );
 
     return (
-        <div className="container mx-auto p-6">
-            <ToastContainer />
-            <div className="bg-white rounded-lg shadow-md p-6">
-                <div className="flex justify-between items-center mb-6">
-                    <h1 className="text-2xl font-bold text-gray-800 flex items-center">
-                        <FaBook className="mr-2" /> Publications
-                    </h1>
-                    <Link 
-                        to="/admin/publication/create" 
-                        className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center transition-colors duration-200"
-                    >
-                        <FaPlus className="mr-2" /> Add New Publication
-                    </Link>
+        <div className="container mx-auto px-4 py-8">
+            <ToastContainer position="top-right" autoClose={3000} />
+            
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6">
+                <h1 className="text-2xl md:text-3xl font-bold text-gray-800 mb-4 sm:mb-0">Publications Management</h1>
+                <Link 
+                    to="/admin/publication/create" 
+                    className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md flex items-center transition-colors"
+                >
+                    <FiPlus className="mr-2" />
+                    Add New Publication
+                </Link>
+            </div>
+            
+            {publications.length === 0 ? (
+                <div className="bg-white rounded-lg shadow p-6 text-center">
+                    <p className="text-gray-600">No publications found. Add your first publication to get started.</p>
                 </div>
-                
-                {publications.length === 0 ? (
-                    <div className="text-center py-8 text-gray-500">
-                        No publications found. Create your first publication.
-                    </div>
-                ) : (
+            ) : (
+                <div className="bg-white rounded-lg shadow overflow-hidden">
                     <div className="overflow-x-auto">
                         <table className="min-w-full divide-y divide-gray-200">
                             <thead className="bg-gray-50">
                                 <tr>
-                                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Title
-                                    </th>
-                                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        <FaUser className="inline mr-1" /> Author
-                                    </th>
-                                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        <FaCalendarAlt className="inline mr-1" /> Date
-                                    </th>
-                                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        <FaNewspaper className="inline mr-1" /> Publication
-                                    </th>
-                                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Actions
-                                    </th>
+                                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Title</th>
+                                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Author</th>
+                                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Publication</th>
+                                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                                 </tr>
                             </thead>
                             <tbody className="bg-white divide-y divide-gray-200">
                                 {publications.map((pub) => (
                                     <tr key={pub._id} className="hover:bg-gray-50">
                                         <td className="px-6 py-4 whitespace-nowrap">
-                                            <div className="font-medium text-gray-900">{pub.title}</div>
-                                            <div className="text-sm text-gray-500 line-clamp-2">{pub.description}</div>
-                                            {pub.link && (
-                                                <a 
-                                                    href={pub.link} 
-                                                    target="_blank" 
-                                                    rel="noopener noreferrer" 
-                                                    className="text-blue-600 hover:text-blue-800 text-sm flex items-center mt-1"
-                                                >
-                                                    <FaExternalLinkAlt className="mr-1" /> View
-                                                </a>
-                                            )}
+                                            <div className="flex items-center">
+                                                <div>
+                                                    <div className="text-sm font-medium text-gray-900">{pub.title}</div>
+                                                    <div className="text-sm text-gray-500 line-clamp-1">{pub.description}</div>
+                                                </div>
+                                            </div>
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                             {pub.authorname}
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                            {new Date(pub.publishdate).toLocaleDateString()}
-                                        </td>
-                                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                             {pub.publicationname}
                                         </td>
+                                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            {new Date(pub.publishdate).toLocaleDateString()}
+                                        </td>
                                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                            <div className="flex space-x-2">
+                                            <div className="flex items-center space-x-2">
+                                                {pub.link && (
+                                                    <a 
+                                                        href={pub.link} 
+                                                        target="_blank" 
+                                                        rel="noopener noreferrer"
+                                                        className="text-blue-600 hover:text-blue-900 p-1 rounded hover:bg-blue-50"
+                                                        title="View Publication"
+                                                    >
+                                                        <FiExternalLink />
+                                                    </a>
+                                                )}
                                                 <Link
                                                     to={`/admin/publication/${pub._id}`}
-                                                    className="text-blue-600 hover:text-blue-900 flex items-center"
+                                                    className="text-yellow-600 hover:text-yellow-900 p-1 rounded hover:bg-yellow-50"
+                                                    title="Edit"
                                                 >
-                                                    <FaEdit className="mr-1" /> Edit
+                                                    <FiEdit2 />
                                                 </Link>
                                                 <button
                                                     onClick={() => handleDelete(pub._id)}
-                                                    className="text-red-600 hover:text-red-900 flex items-center"
+                                                    className="text-red-600 hover:text-red-900 p-1 rounded hover:bg-red-50"
+                                                    title="Delete"
                                                 >
-                                                    <FaTrash className="mr-1" /> Delete
+                                                    <FiTrash2 />
                                                 </button>
                                             </div>
                                         </td>
@@ -163,10 +139,10 @@ const Publications = () => {
                             </tbody>
                         </table>
                     </div>
-                )}
-            </div>
+                </div>
+            )}
         </div>
-    )
-}
+    );
+};
 
 export default Publications;
