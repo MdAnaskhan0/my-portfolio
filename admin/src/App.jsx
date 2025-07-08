@@ -40,8 +40,18 @@ import UpdateSkill from './components/settings/skill/UpdateSkill';
 
 // Publications
 import CreatePublication from './components/settings/publications/CreatePublication';
-import Publications from './components/settings/publications/Publications'; 
+import Publications from './components/settings/publications/Publications';
 import UpdatePublication from './components/settings/publications/UpdatePublication';
+
+// Project Category
+import CreateCategory from './components/settings/category/CreateCategory';
+import Categoryies from './components/settings/category/Categoryies';
+import UpdateCategory from './components/settings/category/UpdateCategory';
+
+// Projects
+import CreateProject  from './components/settings/projects/CreateProject';
+import Projects from './components/settings/projects/Projects';
+import UpdateProject from './components/settings/projects/UpdateProject';
 
 // Portfolio
 import Portfolio from './pages/portfolio/Portfolio';
@@ -87,12 +97,21 @@ function App() {
             <Route path="exparties/:id" element={<UpdateExparties />} />
 
             <Route path="skill/create" element={<CreateSkill />} />
-            <Route path="skill" element={<Skills />} /> 
+            <Route path="skill" element={<Skills />} />
             <Route path="skill/:id" element={<UpdateSkill />} />
 
             <Route path="publication/create" element={<CreatePublication />} />
-            <Route path="publication" element={<Publications />} /> 
+            <Route path="publication" element={<Publications />} />
             <Route path="publication/:id" element={<UpdatePublication />} />
+
+            <Route path="project-category/create" element={<CreateCategory />} />
+            <Route path="project-category" element={<Categoryies />} />
+            <Route path="update-category/:id" element={<UpdateCategory />} />
+
+            <Route path="project/create" element={<CreateProject />} />
+            <Route path="project" element={<Projects />} />
+            <Route path="update-project/:id" element={<UpdateProject />} />
+
 
           </Route>
         </Routes>
