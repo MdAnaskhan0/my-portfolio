@@ -87,7 +87,7 @@ const Sidebar = () => {
           }`}
         >
           <FiUser className="mr-3" />
-          Profile
+          Admin Profile
         </Link>
 
         {/* Portfolio Setting */}

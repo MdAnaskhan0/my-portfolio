@@ -40,7 +40,7 @@ const CreateExperience = () => {
                 autoClose: 3000,
             });
             setTimeout(() => {
-                navigate('/experiences'); // Adjust this route as needed
+                navigate('/admin/experience'); // Adjust this route as needed
             }, 1500);
         } catch (error) {
             console.error('Error creating experience:', error);

@@ -1,4 +1,4 @@
-import ExperienceModel from '../models/experienceModel.js';
+import Experience from '../models/experienceModel.js';
 
 export const createExperience = async (req, res) => {
     try {
