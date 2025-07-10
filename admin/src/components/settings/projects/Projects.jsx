@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 import { FiEdit2, FiTrash2, FiEye, FiSearch } from 'react-icons/fi'
+import { Link } from 'react-router-dom'
 
 const Projects = () => {
-  const baseurl = import.meta.env.VITE_API_BASE_URL;
+  const baseurl = import.meta.env.VITE_API_BASE_URL
   const [projects, setProjects] = useState([])
   const [loading, setLoading] = useState(true)
   const [searchTerm, setSearchTerm] = useState('')
@@ -20,6 +21,7 @@ const Projects = () => {
         setLoading(false)
       }
     }
+
     fetchProjects()
   }, [baseurl])
 
@@ -116,20 +118,13 @@ const Projects = () => {
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                     <div className="flex space-x-2">
-                      <a
-                        href={`/projects/${project._id}`}
-                        className="text-blue-600 hover:text-blue-900 p-1 rounded hover:bg-blue-50"
-                        title="View"
-                      >
-                        <FiEye size={18} />
-                      </a>
-                      <a
-                        href={`/projects/edit/${project._id}`}
+                      <Link
+                        to={`/admin/update-project/${project._id}`}
                         className="text-green-600 hover:text-green-900 p-1 rounded hover:bg-green-50"
                         title="Edit"
                       >
                         <FiEdit2 size={18} />
-                      </a>
+                      </Link>
                       <button
                         onClick={() => handleDelete(project._id)}
                         className="text-red-600 hover:text-red-900 p-1 rounded hover:bg-red-50"

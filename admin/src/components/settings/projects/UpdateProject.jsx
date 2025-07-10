@@ -25,7 +25,9 @@ const UpdateProject = () => {
       try {
         // Fetch categories
         const categoriesResponse = await axios.get(`${baseurl}/api/projectcategory`)
-        setCategories(categoriesResponse.data)
+        setCategories(categoriesResponse.data.projectCategory)
+        console.log(categoriesResponse.data.projectCategory)
+
 
         // Fetch project data
         const projectResponse = await axios.get(`${baseurl}/api/project/${id}`)
@@ -94,7 +96,7 @@ const UpdateProject = () => {
       })
 
       toast.success('Project updated successfully!')
-      navigate('/projects')
+      navigate('/admin/project')
     } catch (error) {
       toast.error(error.response?.data?.message || 'Failed to update project')
     } finally {
@@ -131,8 +133,8 @@ const UpdateProject = () => {
             >
               <option value="">Select Category</option>
               {categories.map((category) => (
-                <option key={category._id} value={category.categoryname}>
-                  {category.categoryname}
+                <option key={category._id} value={category.projectcategoryname}>
+                  {category.projectcategoryname}
                 </option>
               ))}
             </select>
@@ -215,7 +217,7 @@ const UpdateProject = () => {
         <div className="flex justify-end space-x-4">
           <button
             type="button"
-            onClick={() => navigate('/projects')}
+            onClick={() => navigate('/admin/project')}
             className="px-6 py-2 border border-gray-300 text-gray-700 font-medium rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
           >
             Cancel

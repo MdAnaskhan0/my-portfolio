@@ -33,7 +33,7 @@ app.use(cors(corsOptions));
 
 // API Routes
 app.use('/profilePicture', express.static(path.join(process.cwd(), 'profilePicture')));
-app.use('/projectImage', express.static(path.join(process.cwd(), 'server/projectImage')));
+app.use('/projectImage', express.static(path.join(process.cwd(), 'projectImage')));
 app.use('/api/user', userRoute);
 app.use('/api/socialmedia', socialMediaRoute);
 app.use('/api/education', educationRoute);

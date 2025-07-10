@@ -26,7 +26,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    profilepicture: {  // lowercase here
+    profilepicture: {
         type: String,
         default: '',
     },
