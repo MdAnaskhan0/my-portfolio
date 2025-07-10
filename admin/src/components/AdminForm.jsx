@@ -1,11 +1,15 @@
 import { useState } from 'react';
+import axios from 'axios';
+import { toast } from 'react-hot-toast';
 
 const AdminForm = ({ admin, onSubmit, onClose }) => {
+  const baseurl = import.meta.env.VITE_API_BASE_URL;
   const [formData, setFormData] = useState({
     name: admin?.name || '',
     email: admin?.email || '',
     password: '',
   });
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -15,13 +19,23 @@ const AdminForm = ({ admin, onSubmit, onClose }) => {
     }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    onSubmit(admin?._id, formData);
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    const sendData = async () => {
+      try {
+        const response = await axios.post(`${baseurl}/api/admin/create`, formData);
+        toast.success('Admin created successfully');
+        onClose();
+      } catch (error) {
+        toast.error('Failed to create admin');
+      }
+    }
+
+    sendData();
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <div className="fixed inset-0 flex items-center justify-center z-50">
       <div className="bg-white rounded-lg p-6 w-full max-w-md">
         <h2 className="text-xl font-bold mb-4">
           {admin ? 'Edit Admin' : 'Create Admin'}
@@ -79,9 +93,10 @@ const AdminForm = ({ admin, onSubmit, onClose }) => {
             </button>
             <button
               type="submit"
-              className="px-4 py-2 bg-primary text-white rounded hover:bg-primary-dark"
+              disabled={loading}
+              className="px-4 py-2 bg-primary text-black rounded hover:bg-primary-dark"
             >
-              {admin ? 'Update' : 'Create'}
+              {loading ? 'Processing...' : admin ? 'Update' : 'Create'}
             </button>
           </div>
         </form>

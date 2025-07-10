@@ -4,9 +4,23 @@ const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 const API_URL = `${BASE_URL}/api/admin`;
 
 const createAdmin = async (adminData) => {
-  const response = await axios.post(`${API_URL}/create`, adminData);
-  return response.data;
+  try {
+    console.log('Sending data:', adminData); // Log the data being sent
+    const response = await axios.post(`${API_URL}/create`, adminData, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    console.log('Response:', response);
+    console.log('Full API URL:', `${BASE_URL}/api/admin/create`);
+    return response.data;
+  } catch (error) {
+    console.error('Error creating admin:', error);
+    console.error('Error response:', error.response);
+    throw error;
+  }
 };
+
 
 const loginAdmin = async (credentials) => {
   const response = await axios.post(`${API_URL}/login`, credentials);

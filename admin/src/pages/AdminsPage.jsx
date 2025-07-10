@@ -24,12 +24,19 @@ const AdminsPage = () => {
 
   const handleCreate = async (adminData) => {
     try {
+      console.log('Sending:', adminData); // Log the payload
       await adminApi.createAdmin(adminData);
       toast.success('Admin created successfully');
       fetchAdmins();
       setIsFormOpen(false);
     } catch (error) {
-      toast.error(error.response?.data?.message || 'Failed to create admin');
+      console.error('Full error:', error);
+      console.error('Error response data:', error.response?.data);
+      toast.error(
+        error.response?.data?.message ||
+        error.response?.data?.error ||
+        'Failed to create admin'
+      );
     }
   };
 
