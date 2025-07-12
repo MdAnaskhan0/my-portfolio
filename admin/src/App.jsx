@@ -6,7 +6,13 @@ import Layout from './components/Layout';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import AdminsPage from './pages/AdminsPage';
+
+// Portfolio
 import Profile from './pages/Profile';
+import AboutMe from './pages/portfolio/AboutMe';
+import Resume from './pages/portfolio/Resume';
+import ProjectsPage from './pages/portfolio/Projects';
+import Contact from './pages/portfolio/Contact';
 
 // Portfolio Profile
 import CreateProfile from './components/settings/Profile/CreateProfile';
@@ -49,7 +55,7 @@ import Categoryies from './components/settings/category/Categoryies';
 import UpdateCategory from './components/settings/category/UpdateCategory';
 
 // Projects
-import CreateProject  from './components/settings/projects/CreateProject';
+import CreateProject from './components/settings/projects/CreateProject';
 import Projects from './components/settings/projects/Projects';
 import UpdateProject from './components/settings/projects/UpdateProject';
 
@@ -62,7 +68,15 @@ function App() {
       <Router>
         <Toaster position="top-right" />
         <Routes>
-          <Route path='/' element={<Portfolio />} />
+          {/* Portfolio Routes */}
+          <Route path="/" element={<Portfolio />}>
+            <Route index element={<AboutMe />} />
+            <Route path="resume" element={<Resume />} />
+            <Route path="projects" element={<ProjectsPage />} />
+            <Route path="contact" element={<Contact />} />
+          </Route>
+
+          {/* Login Routes */}
           <Route path="/login" element={<Login />} />
           <Route
             path="/admin"

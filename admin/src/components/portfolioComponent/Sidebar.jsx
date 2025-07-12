@@ -40,11 +40,11 @@ const Sidebar = () => {
 
     const getSocialIcon = (name) => {
         const icons = {
-            github: <FaGithub className="text-yellow-500" />,
-            linkedin: <FaLinkedin className="text-yellow-500" />,
-            facebook: <FaFacebook className="text-yellow-500" />,
-            twitter: <FaTwitter className="text-yellow-500" />,
-            instagram: <FaInstagram className="text-yellow-500" />,
+            github: <FaGithub className="text-gray-500" />,
+            linkedin: <FaLinkedin className="text-gray-500" />,
+            facebook: <FaFacebook className="text-gray-500" />,
+            twitter: <FaTwitter className="text-gray-500" />,
+            instagram: <FaInstagram className="text-gray-500" />,
         };
         return icons[name.toLowerCase()] || null;
     };
@@ -78,7 +78,7 @@ const Sidebar = () => {
     }
 
     return (
-        <div className="bg-gray-900 rounded-lg shadow-xl overflow-hidden h-full flex flex-col">
+        <div className="bg-gray-900 rounded-lg shadow-xl overflow-hidden h-full flex flex-col sm:ml-12 sm:py-8 border-1 border-gray-700">
             {/* Mobile menu button */}
             <div className="lg:hidden bg-gray-800 p-4 flex justify-between items-center">
                 <h3 className="text-white font-bold text-lg">{userData?.name}</h3>
@@ -96,10 +96,10 @@ const Sidebar = () => {
                 {/* Profile section */}
                 {userData && (
                     <div className="p-6 text-center">
-                        <div className="w-32 h-32 mx-auto mb-4 rounded-full bg-gray-800 flex items-center justify-center overflow-hidden border-2 border-yellow-500">
-                            {userData.image ? (
+                        <div className="w-38 h-45 mx-auto mb-4 rounded-md bg-gray-800 flex items-center justify-center overflow-hidden border-2 border-yellow-500">
+                            {userData.profilepicture ? (
                                 <img
-                                    src={userData.image}
+                                    src={userData.profilepicture}
                                     alt={userData.name}
                                     className="w-full h-full object-cover"
                                     loading="lazy"
@@ -159,7 +159,7 @@ const Sidebar = () => {
                                     to={link.socialmediaurl}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-yellow-500 hover:text-gray-900 transition-colors transform hover:scale-110"
+                                    className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center  hover:text-gray-900 transition-colors transform hover:scale-110"
                                     title={link.socialmedianame}
                                     aria-label={link.socialmedianame}
                                 >
@@ -169,11 +169,6 @@ const Sidebar = () => {
                         </div>
                     </div>
                 )}
-
-                {/* Footer/copyright */}
-                <div className="p-4 text-center text-gray-500 text-sm">
-                    © {new Date().getFullYear()} All Rights Reserved
-                </div>
             </div>
         </div>
     );
