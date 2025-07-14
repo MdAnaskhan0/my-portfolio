@@ -14,6 +14,7 @@ import publicationRoute from './routes/publicationRoute.js';
 import adminRoute from './routes/adminRoute.js';
 import projectCategoryRoute from './routes/projectCategoryRoute.js';
 import projectRoute from './routes/projectRoute.js';
+import expartRoute from './routes/expartRoute.js';
 
 dotenv.config();
 
@@ -43,6 +44,7 @@ app.use('/api/publication', publicationRoute);
 app.use('/api/admin', adminRoute);
 app.use('/api/projectcategory', projectCategoryRoute);
 app.use('/api/project', projectRoute);
+app.use('/api/expart', expartRoute);
 
 const startServer = async () => {
   try {

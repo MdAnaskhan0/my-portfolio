@@ -108,7 +108,7 @@ function App() {
 
             <Route path="exparties/create" element={<CreateExparties />} />
             <Route path="exparties" element={<Exparties />} />
-            <Route path="exparties/:id" element={<UpdateExparties />} />
+            <Route path="exparties/update/:id" element={<UpdateExparties />} />
 
             <Route path="skill/create" element={<CreateSkill />} />
             <Route path="skill" element={<Skills />} />
