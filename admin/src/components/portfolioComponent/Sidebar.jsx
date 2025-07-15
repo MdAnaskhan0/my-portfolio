@@ -121,19 +121,19 @@ const Sidebar = () => {
                     <div className="p-4">
                         <ul className="space-y-3">
                             <li className="flex items-center px-2 py-1 text-gray-300">
-                                <FaEnvelope className="text-[#E9C667] mr-3 bg-gray-800 p-2 rounded-md text-4xl flex-shrink-0" />
-                                <Link to={`mailto:${userData.email}`} className="truncate hover:text-yellow-500 transition-colors">
+                                <FaEnvelope className="text-yellow-500 mr-3 bg-gray-800 p-2 rounded-md text-4xl flex-shrink-0" />
+                                <Link to={`mailto:${userData.email}`} className="truncate">
                                     {userData.email}
                                 </Link>
                             </li>
                             <li className="flex items-center px-2 py-1 text-gray-300">
-                                <FaPhone className="text-[#E9C667] mr-3 bg-gray-800 p-2 rounded-md text-4xl flex-shrink-0" />
-                                <Link to={`tel:${userData.phone}`} className="hover:text-yellow-500 transition-colors">
+                                <FaPhone className="text-yellow-500 mr-3 bg-gray-800 p-2 rounded-md text-4xl flex-shrink-0" />
+                                <Link to={`tel:${userData.phone}`}>
                                     {userData.phone}
                                 </Link>
                             </li>
                             <li className="flex items-center px-2 py-1 text-gray-300">
-                                <CgCalendarDates className="text-[#E9C667] mr-3 bg-gray-800 p-2 rounded-md text-4xl flex-shrink-0" />
+                                <CgCalendarDates className="text-yellow-500 mr-3 bg-gray-800 p-2 rounded-md text-4xl flex-shrink-0" />
                                 <span>
                                     {new Date(userData.dob).toLocaleDateString('en-GB', {
                                         day: 'numeric',
@@ -143,7 +143,7 @@ const Sidebar = () => {
                                 </span>
                             </li>
                             <li className="flex items-center px-2 py-1 text-gray-300">
-                                <FaMapMarker className="text-[#E9C667] mr-3 bg-gray-800 p-2 rounded-md text-4xl flex-shrink-0" />
+                                <FaMapMarker className="text-yellow-500 mr-3 bg-gray-800 p-2 rounded-md text-4xl flex-shrink-0" />
                                 <span>{userData.address}</span>
                             </li>
                         </ul>

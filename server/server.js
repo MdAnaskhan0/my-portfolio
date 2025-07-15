@@ -15,6 +15,7 @@ import adminRoute from './routes/adminRoute.js';
 import projectCategoryRoute from './routes/projectCategoryRoute.js';
 import projectRoute from './routes/projectRoute.js';
 import expartRoute from './routes/expartRoute.js';
+import contactRoute from './routes/ContactRoute.js';
 
 dotenv.config();
 
@@ -45,6 +46,7 @@ app.use('/api/admin', adminRoute);
 app.use('/api/projectcategory', projectCategoryRoute);
 app.use('/api/project', projectRoute);
 app.use('/api/expart', expartRoute);
+app.use('/api/contact', contactRoute);
 
 const startServer = async () => {
   try {

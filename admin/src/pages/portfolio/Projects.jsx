@@ -76,7 +76,7 @@ const Projects = () => {
               onClick={() => handleCategoryChange(category)}
               className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
                 selectedCategory === category
-                  ? 'bg-indigo-600 text-white shadow-md'
+                  ? 'bg-yellow-500 text-white shadow-md'
                   : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200'
               }`}
             >
@@ -132,7 +132,7 @@ const Projects = () => {
 const ProjectCard = ({ project, baseurl, onClick }) => {
   return (
     <div 
-      className="group bg-white rounded-xl shadow-sm overflow-hidden cursor-pointer hover:shadow-md transition-all duration-300 border border-gray-100"
+      className="group bg-gray-800 rounded-xl shadow-sm overflow-hidden cursor-pointer hover:shadow-md transition-all duration-300 border border-gray-800"
       onClick={onClick}
     >
       <div className="relative h-56 overflow-hidden">
@@ -152,14 +152,14 @@ const ProjectCard = ({ project, baseurl, onClick }) => {
       <div className="p-5">
         <div className="flex justify-between items-start">
           <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-1">{project.projectname.slice(0, 20)}...</h3>
-            <span className="inline-block bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-md">
+            <h3 className="text-lg font-semibold text-gray-100 mb-1">{project.projectname.slice(0, 20)}...</h3>
+            <span className="inline-block text-yellow-500 text-xs rounded-md">
               {project.projectcategoryname}
             </span>
           </div>
           {project.projecturl && (
-            <a 
-              href={project.projecturl} 
+            <Link 
+              to={project.projecturl} 
               target="_blank" 
               rel="noopener noreferrer"
               onClick={(e) => e.stopPropagation()}
@@ -169,7 +169,7 @@ const ProjectCard = ({ project, baseurl, onClick }) => {
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
               </svg>
-            </a>
+            </Link>
           )}
         </div>
       </div>

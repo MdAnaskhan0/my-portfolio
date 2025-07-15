@@ -6,6 +6,7 @@ import Layout from './components/Layout';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import AdminsPage from './pages/AdminsPage';
+import ContaceMessage from './components/ContaceMessage';
 
 // Portfolio
 import Profile from './pages/Profile';
@@ -89,6 +90,8 @@ function App() {
             <Route index element={<Dashboard />} />
             <Route path="admins" element={<AdminsPage />} />
             <Route path="profile" element={<Profile />} />
+            <Route path="messages" element={<ContaceMessage />} />
+
 
             <Route path="profile/create" element={<CreateProfile />} />
             <Route path="profile/view" element={<User />} />
