@@ -9,6 +9,7 @@ import {
 import { CgCalendarDates } from "react-icons/cg";
 import { IoMdMenu, IoMdClose } from 'react-icons/io';
 import { RiContactsBookFill } from 'react-icons/ri';
+import { SiReaddotcv } from "react-icons/si";
 
 const Sidebar = () => {
     const baseurl = import.meta.env.VITE_API_BASE_URL;
@@ -166,6 +167,13 @@ const Sidebar = () => {
                                     {getSocialIcon(link.socialmedianame)}
                                 </Link>
                             ))}
+
+                            {/* CV link */}
+                            <button className='my-1'>
+                                <Link to="https://www.overleaf.com/read/rqgjzxcwvqfv#e79fea" className="flex items-center gap-2 text-gray-300 bg-gray-800 rounded-lg px-3 py-1">
+                                    <SiReaddotcv className="text-yellow-500 text-base" /> <p>Download CV</p>
+                                </Link>
+                            </button>
                         </div>
                     </div>
                 )}
