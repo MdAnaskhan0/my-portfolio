@@ -5,7 +5,7 @@ const Navlink = () => {
   const location = useLocation();
   
   // Define base and active styles
-  const baseStyle = "transition-colors duration-300 p-1 sm:px-3 sm:py-2 rounded-md text-xs sm:text-base font-semibold";
+  const baseStyle = "transition-colors duration-300 p-2 sm:px-3 sm:py-2 rounded-md text-xs sm:text-base font-semibold";
   const inactiveStyle = "text-gray-300 hover:text-yellow-500 hover:bg-gray-800";
   const activeStyle = "text-yellow-500 bg-gray-800";
   
@@ -16,7 +16,7 @@ const Navlink = () => {
   };
 
   return (
-    <nav className="flex flex-row gap-1 sm:gap-2">
+    <nav className="flex flex-row gap-1 sm:gap-2 justify-center">
       <Link 
         to='/' 
         className={`${baseStyle} ${isActive('/') ? activeStyle : inactiveStyle}`}

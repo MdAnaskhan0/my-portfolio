@@ -48,7 +48,7 @@ const Contact = () => {
 
   return (
     <div className="px-4 sm:px-6 lg:px-8 text-white">
-      <div className='flex flex-row gap-4 justify-end'>
+      <div className='flex flex-row gap-4 justify-start sm:justify-end'>
         {
           socialLinks.map((link) => (
             <Link
@@ -65,7 +65,7 @@ const Contact = () => {
           ))
         }
       </div>
-      <div className="max-w-3xl mx-auto my-20">
+      <div className="max-w-3xl mx-auto my-10 sm:my-20">
         {/* Contact Form */}
         <div className="bg-gray-900">
           <ContactForm />

@@ -60,7 +60,7 @@ const Exparties = () => {
                                 <h3 className="text-white font-medium text-lg mb-1">
                                     {exparty.expartitemname}
                                 </h3>
-                                <p className="text-gray-400 text-sm">
+                                <p className="text-gray-400 text-sm text-left">
                                     {exparty.expartitemdescription}
                                 </p>
                             </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { FiMail, FiPhone, FiUser, FiMessageSquare, FiTrash2, FiClock } from 'react-icons/fi';
+import { FiMail, FiPhone, FiUser, FiMessageSquare, FiTrash2 } from 'react-icons/fi';
 import { FaRegCheckCircle, FaRegCircle } from 'react-icons/fa';
 
 const ContactMessage = () => {
@@ -29,13 +29,8 @@ const ContactMessage = () => {
   const filteredMessages = messages.filter(message =>
     message.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     message.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    message.phone.includes(searchTerm)
+    (message.phone && message.phone.includes(searchTerm))
   );
-
-  const formatDate = (dateString) => {
-    const options = { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' };
-    return new Date(dateString).toLocaleDateString(undefined, options);
-  };
 
   const deleteMessage = async (id) => {
     try {
@@ -45,7 +40,7 @@ const ContactMessage = () => {
         setSelectedMessage(null);
       }
     } catch (error) {
-      console.log(error);
+      console.error('Error deleting message:', error);
     }
   };
 
@@ -59,9 +54,8 @@ const ContactMessage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 p-4 md:p-8">
+    <div className="min-h-screen bg-gray-50 p-4 md:px-8">
       <div className="max-w-6xl mx-auto">
-        <h1 className="text-2xl md:text-3xl font-bold text-gray-800 mb-6">Contact Messages</h1>
         
         {loading ? (
           <div className="flex justify-center items-center h-64">
@@ -114,11 +108,8 @@ const ContactMessage = () => {
                           )}
                           <h3 className="font-medium text-gray-800">{message.name}</h3>
                         </div>
-                        <span className="text-xs text-gray-500">
-                          {formatDate(message.createdAt || message._id)}
-                        </span>
                       </div>
-                      <p className="text-sm text-gray-600 mt-1 truncate">{message.message}</p>
+                      <p className="text-sm text-gray-600 mt-1 truncate">{message.message.slice(0, 50)}...</p>
                       <div className="flex items-center gap-2 mt-2">
                         <FiMail className="text-gray-400 text-xs" />
                         <span className="text-xs text-gray-500">{message.email}</span>
@@ -135,10 +126,6 @@ const ContactMessage = () => {
                     <div className="flex justify-between items-start mb-6">
                       <div>
                         <h2 className="text-xl font-bold text-gray-800">{selectedMessage.name}</h2>
-                        <div className="flex items-center gap-2 mt-1 text-gray-600">
-                          <FiClock className="text-sm" />
-                          <span className="text-sm">{formatDate(selectedMessage.createdAt || selectedMessage._id)}</span>
-                        </div>
                       </div>
                       <button
                         onClick={() => deleteMessage(selectedMessage._id)}

@@ -20,7 +20,7 @@ const PathDisplay = () => {
     };
 
     return (
-        <div className="text-white font-bold text-md sm:text-3xl capitalize">
+        <div className="text-white font-bold text-xl sm:text-3xl capitalize">
             {getPathName()}
         </div>
     );

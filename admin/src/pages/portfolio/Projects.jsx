@@ -65,7 +65,7 @@ const Projects = () => {
   }
 
   return (
-    <div className="container mx-auto px-4">
+    <div className="container mx-auto px-4 my-4 sm:my-0">
 
       {/* Category Filter Section */}
       <div className="mb-12">
@@ -74,7 +74,7 @@ const Projects = () => {
             <button
               key={category}
               onClick={() => handleCategoryChange(category)}
-              className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
+              className={`px-2 py-1 sm:px-5 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-200 ${
                 selectedCategory === category
                   ? 'bg-yellow-500 text-white shadow-md'
                   : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200'

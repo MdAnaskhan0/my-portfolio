@@ -41,7 +41,7 @@ const Education = () => {
                             <div className=''>
                                 <div className='flex items-center gap-4'>
                                     <FaRegCircleDot className="text-yellow-500 text-xl" />
-                                    <h3 className="text-lg font-medium text-gray-200">{edu.degreename}</h3>
+                                    <h3 className="text-base sm:text-lg font-medium text-gray-200">{edu.degreename}</h3>
                                 </div>
                                 <div className='pl-10 border-l-2 border-indigo-200 ml-2'>
                                     <p className="text-gray-600 text-sm mb-1">{edu.institutionname}</p>

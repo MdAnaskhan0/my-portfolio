@@ -3,12 +3,10 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import {
     FaGithub, FaLinkedin, FaFacebook, FaTwitter, FaInstagram,
-    FaEnvelope, FaPhone, FaMapMarker, FaUser, FaBriefcase,
-    FaGraduationCap, FaCode, FaHome
+    FaEnvelope, FaPhone, FaMapMarker
 } from 'react-icons/fa';
 import { CgCalendarDates } from "react-icons/cg";
 import { IoMdMenu, IoMdClose } from 'react-icons/io';
-import { RiContactsBookFill } from 'react-icons/ri';
 import { SiReaddotcv } from "react-icons/si";
 
 const Sidebar = () => {
@@ -121,19 +119,19 @@ const Sidebar = () => {
                     <div className="p-4">
                         <ul className="space-y-3">
                             <li className="flex items-center px-2 py-1 text-gray-300">
-                                <FaEnvelope className="text-yellow-500 mr-3 bg-gray-800 p-2 rounded-md text-4xl flex-shrink-0" />
+                                <FaEnvelope className="text-gray-400 mr-3 bg-gray-800 p-2 rounded-md text-4xl flex-shrink-0" />
                                 <Link to={`mailto:${userData.email}`} className="truncate">
                                     {userData.email}
                                 </Link>
                             </li>
                             <li className="flex items-center px-2 py-1 text-gray-300">
-                                <FaPhone className="text-yellow-500 mr-3 bg-gray-800 p-2 rounded-md text-4xl flex-shrink-0" />
+                                <FaPhone className="text-gray-400 mr-3 bg-gray-800 p-2 rounded-md text-4xl flex-shrink-0" />
                                 <Link to={`tel:${userData.phone}`}>
                                     {userData.phone}
                                 </Link>
                             </li>
                             <li className="flex items-center px-2 py-1 text-gray-300">
-                                <CgCalendarDates className="text-yellow-500 mr-3 bg-gray-800 p-2 rounded-md text-4xl flex-shrink-0" />
+                                <CgCalendarDates className="text-gray-400 mr-3 bg-gray-800 p-2 rounded-md text-4xl flex-shrink-0" />
                                 <span>
                                     {new Date(userData.dob).toLocaleDateString('en-GB', {
                                         day: 'numeric',
@@ -143,7 +141,7 @@ const Sidebar = () => {
                                 </span>
                             </li>
                             <li className="flex items-center px-2 py-1 text-gray-300">
-                                <FaMapMarker className="text-yellow-500 mr-3 bg-gray-800 p-2 rounded-md text-4xl flex-shrink-0" />
+                                <FaMapMarker className="text-gray-400 mr-3 bg-gray-800 p-2 rounded-md text-4xl flex-shrink-0" />
                                 <span>{userData.address}</span>
                             </li>
                         </ul>

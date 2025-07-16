@@ -22,14 +22,17 @@ class ContactController {
 
   async delete(req, res) {
     try {
-      const contact = await Contact.findById(req.params.id);
-      if (!contact) {
+      const deletedContact = await Contact.findByIdAndDelete(req.params.id);
+      if (!deletedContact) {
         return res.status(404).json({ message: 'Contact not found' });
       }
-      await contact.remove();
       res.json({ message: 'Contact deleted successfully' });
     } catch (err) {
-      res.status(500).json({ message: err.message });
+      console.error('Delete error:', err);
+      res.status(500).json({
+        message: 'Error deleting contact',
+        error: err.message
+      });
     }
   }
 }

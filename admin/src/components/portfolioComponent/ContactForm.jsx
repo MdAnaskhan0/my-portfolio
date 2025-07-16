@@ -61,7 +61,7 @@ const ContactForm = () => {
                 </div>
             )}
 
-            <div className='flex flex-row gap-4'>
+            <div className='flex flex-col sm:flex-row gap-4'>
                 <div className="flex-1">
                     <input
                         type="text"
@@ -118,7 +118,7 @@ const ContactForm = () => {
             <button
                 type="submit"
                 disabled={isSubmitting}
-                className="flex items-center justify-center w-50 bg-yellow-500 hover:bg-yellow-600 text-gray-900 font-bold py-3 px-4 rounded-md transition-colors disabled:opacity-50"
+                className="flex items-center justify-center w-full sm:w-50 bg-yellow-500 hover:bg-yellow-600 text-gray-900 font-bold py-3 px-4 rounded-md transition-colors disabled:opacity-50"
             >
                 {isSubmitting ? (
                     'Sending...'

@@ -16,16 +16,17 @@ const CreateExperience = () => {
         department: '',
         startdate: '',
         enddate: '',
-        description: ''
+        description: '',
+        currentlyWorking: false
     });
 
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
+        const { name, value, type, checked } = e.target;
         setFormData(prev => ({
             ...prev,
-            [name]: value
+            [name]: type === 'checkbox' ? checked : value
         }));
     };
 
@@ -33,14 +34,19 @@ const CreateExperience = () => {
         e.preventDefault();
         setIsSubmitting(true);
 
+        const dataToSend = {
+            ...formData,
+            enddate: formData.currentlyWorking ? 'Present' : formData.enddate
+        };
+
         try {
-            const response = await axios.post(`${base_url}/api/experience/create`, formData);
+            const response = await axios.post(`${base_url}/api/experience/create`, dataToSend);
             toast.success('Experience created successfully!', {
                 position: "top-center",
                 autoClose: 3000,
             });
             setTimeout(() => {
-                navigate('/admin/experience'); // Adjust this route as needed
+                navigate('/admin/experience'); 
             }, 1500);
         } catch (error) {
             console.error('Error creating experience:', error);
@@ -55,7 +61,7 @@ const CreateExperience = () => {
     };
 
     const handleCancel = () => {
-        navigate(-1); // Go back to previous page
+        navigate(-1); 
     };
 
     return (
@@ -170,11 +176,24 @@ const CreateExperience = () => {
                                         type="date"
                                         id="enddate"
                                         name="enddate"
-                                        value={formData.enddate}
+                                        value={formData.currentlyWorking ? '' : formData.enddate}
                                         onChange={handleChange}
-                                        required
+                                        disabled={formData.currentlyWorking}
                                         className="py-2 pl-10 block w-full border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
                                     />
+                                </div>
+                                <div className="mt-2 flex items-center">
+                                    <input
+                                        type="checkbox"
+                                        id="currentlyWorking"
+                                        name="currentlyWorking"
+                                        checked={formData.currentlyWorking}
+                                        onChange={handleChange}
+                                        className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+                                    />
+                                    <label htmlFor="currentlyWorking" className="ml-2 block text-sm text-gray-700">
+                                        I currently work here
+                                    </label>
                                 </div>
                             </div>
                         </div>
