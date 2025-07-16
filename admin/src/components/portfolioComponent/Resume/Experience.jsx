@@ -75,7 +75,6 @@ const Experience = () => {
                                         </div>
 
                                         <div className="flex items-center text-gray-500 text-sm mb-1">
-                                            <SiPaloaltonetworks className="mr-2" size={14} />
                                             <span className='w-full text-left sm:max-w-100 '>{exp.description}</span>
                                         </div>
                                     </div>
